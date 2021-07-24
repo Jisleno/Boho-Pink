@@ -1,0 +1,28 @@
+<div class="card" style="width: 80vw; margin-left: auto; margin-right:auto; display: block;">
+    <div class="container" style="display: flex;">
+        <img [src]="prodGet.url" style="width: 668px; height: 468px; padding: 50px;">
+        <div class="card" style="width: 352px; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="card-body">
+                <p style="font-size: small;" class="text-muted">Exitencias: {{prodGet.existencias}}</p>
+                <div class="card-title" style="font-size: large; font-weight: bold;">
+                    {{prodGet.marca}}
+                </div>
+                <div class="card-title" style="font-size: medium; font-weight: bold;">
+                    {{prodGet.caracteristicas}}
+                </div>
+                <div class="card-text" style="font-size: x-large;">
+                    ${{prodGet.precio|number}} <br>
+                    <span style="font-size: small;" class="text-muted">IVA incluido</span>
+                </div>
+                <br>
+                <!-- <a href="">Metodos los medios pago</a> -->
+                <a>Envio Gratis</a>
+                <br><br>
+                <p *ngIf="prodGet.talla!=null">Talla: <strong>{{prodGet.talla}}</strong></p>
+                <p>Color: <strong>{{prodGet.color}}</strong></p>
+                <button class="btn btn-block btn-success" (click)="agregarCarrito(prodGet)">Comprar</button>
+                <button class="btn btn-block btn-info" (click)="regresar()">Regresar</button>
+            </div>
+        </div>
+    </div>
+</div>

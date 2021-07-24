@@ -1,0 +1,43 @@
+<p style="font-size: xx-large; overflow: hidden; white-space: nowrap;">
+    ♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡</p>
+<h2 style="text-align: center;" *ngIf="vacio==true">Aun no tienes ningun pedido</h2>
+<h3 style="text-align: center;" *ngIf="vacio!=true">Carrito de compras</h3>
+<p style="font-size: xx-large; overflow: hidden; white-space: nowrap;">
+    ♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡</p>
+
+<div *ngIf="vacio!=true">
+    <div *ngFor="let producto of pedido" class="card"
+        style="width: 80vw; margin-left: auto; margin-right:auto; display: block;">
+        <div class="container">
+            <div *ngFor="let item of producto.producto" class="card mx-auto mt-3"
+                style="width: 65vw; display: flex; flex-direction: row;">
+                <img [src]="item.producto.url" style="width: 180px; height: 150px; padding: 5px; margin-top: .8
+            5rem;">
+                <div class="card-body" style="display: flex; flex-direction: column;">
+                    <div class="card-title" style="font-size: large; font-weight: bold; display: flex;">
+                        {{item.producto.marca}}
+                        <div style="margin-left: auto;">${{item.producto.precio|number}}.00</div>
+                    </div>
+                    <div class="card-title" style="font-size: medium; font-weight: bold;">
+                        {{item.producto.caracteristicas}}
+                    </div>
+
+                    <!-- <p *ngIf="producto.talla!=null">Talla: <strong>{{producto.producto.talla}}</strong></p> -->
+                    <!-- <p>Color: <strong>{{producto.producto.color}}</strong></p> -->
+                </div>
+            </div>
+        </div>
+        <div class="container mb-2">
+            <div class="card mx-auto" style="width: 65vw;">
+                <div class="card-header" style="display: flex;">
+                    <div class="card-title" style="font-weight: bold; font-size: large;;">
+                        Estado de Pedido: {{producto.estado}}
+                    </div>
+                    <div class="card-title text-muted" style="font-weight: bold; font-size: large; margin-left: auto;">
+                        Monto total : {{producto.precioTotal|number}}.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

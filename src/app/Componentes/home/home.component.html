@@ -1,0 +1,20 @@
+<div class="row container-fluid mb-5">
+    <div class="col-auto" style="margin-left: 3em;" *ngFor="let item of data">
+        <a type="button" class="" (click)="verProducto(item)">
+        <div class="card" style="width: 224px; height: 410px; margin-top: 2em;">
+            <img class="card card-img-top" [src]="item.url" style="width: 224px; height: 224px;">
+            <!-- <a class="carrito" type="button" (click)="agregarCarrito(item)">
+                <i class="fas fa-cart-plus fa-2x"></i>
+            </a> -->
+            <div class="card-body mb-3" style="width: 224px; overflow-y: hidden;">
+                <p class="card-text" style="text-transform: capitalize;">{{item.marca}}</p>
+                <p style="font-size: x-large; font-weight: 900;">$ {{item.precio|number}}</p>
+                <p style=" text-transform: capitalize; font-size: small;">{{item.caracteristicas}}</p>
+            </div>
+            <!-- <div class="card-footer"><button class="btn btn-primary btn-block" (click)="verProducto(item)">ver
+                    mas...</button></div> -->
+        </div>
+        </a>
+    </div>
+</div>
+<!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->

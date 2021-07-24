@@ -1,0 +1,92 @@
+<p style="font-size: xx-large; overflow: hidden; white-space: nowrap;">
+    ♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡</p>
+<h2 style="text-align: center;" *ngIf="vacio==true">No hay productos en el carrito</h2>
+<h3 style="text-align: center;" *ngIf="vacio!=true">Carrito de compras</h3>
+<p style="font-size: xx-large; overflow: hidden; white-space: nowrap;">
+    ♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡</p>
+<div *ngIf="vacio!=true" class="card" style="width: 80vw; margin-left: auto; margin-right:auto; display: block;">
+    <div *ngFor="let producto of articulos" class="container">
+        <div class="card mx-auto" style="width: 65vw; display: flex; flex-direction: row;">
+            <img [src]="producto.producto.url" style="width: 180px; height: 150px; padding: 5px; margin-top: .8
+        5rem;">
+            <div class="card-body" style="display: flex; flex-direction: column;">
+                <div class="card-title" style="font-size: large; font-weight: bold; display: flex;">
+                    {{producto.producto.marca}}
+                    <div style="margin-left: auto;">${{producto.producto.precio|number}}.00</div>
+                </div>
+                <div class="card-title" style="font-size: medium; font-weight: bold;">
+                    {{producto.producto.caracteristicas}}
+                </div>
+
+                <p *ngIf="producto.talla!=null">Talla: <strong>{{producto.producto.talla}}</strong></p>
+                <p>Color: <strong>{{producto.producto.color}}</strong></p>
+                <p>Cantidad:</p>
+                <div style="display: flex;">
+                    <button style="width: 20px; padding: 3px;" (click)="delete(producto.producto)">-</button>
+                    <input type="number" [value]="producto.cantidad" readonly="true"
+                        style="text-align: center; width: 40px;">
+                    <button style="width: 20px; padding: 3px;" (click)="add(producto.producto)">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card mx-auto" style="width: 65vw;">
+            <div class="card-header" style="display: flex;">
+                <button class="btn btn-info mr-3" (click)="regresar()">Regresar</button>
+                <button class="btn btn-success" (click)="nuevo(content)">Comprar!</button>
+                <div class="card-title" style="font-weight: bold; font-size: large; margin-left: auto;">
+                    Total: ${{total|number}}.00
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title mx-auto" id="modal-basic-title">Metodos de Pago</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!-- <button (click)="collapse.toggle()">mostrar</button> -->
+        <div>
+            <div (click)="collapse.toggle()" (click)="validarPago()" class="card border-secondary btn"
+                style="display: flex; flex-direction: row;">
+                <img style="width: 2.5rem;"
+                    src="https://firebasestorage.googleapis.com/v0/b/claudia-32bd6.appspot.com/o/visa.png?alt=media&token=59a6904e-90f6-4dce-aaf5-43d4e78d0c0b">
+                <img style="width: 2.5rem;"
+                    src="https://firebasestorage.googleapis.com/v0/b/moda-b906d.appspot.com/o/matercard.png?alt=media&token=cc5eaaa1-9223-4740-a664-504159f11da6">
+                <p style="margin-left: 1rem; font-size: large;">Tarjeta de Credito/Debito</p>
+            </div>
+
+        </div>
+
+        <div class="card border-secondary" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <div class="form-group">
+                <strong><label for="">Numero de Tarjeta</label></strong>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <strong><label for="">Nombre y Apellidos</label></strong>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <strong><label for="">Fecha expiracion</label></strong>
+                <input type="date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <strong><label for="">Codigo de Seguridad</label></strong>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" [disabled]="pagado" class="btn btn-success" (click)="comprar()">Finalizar Compra</button>
+    </div>
+</ng-template>

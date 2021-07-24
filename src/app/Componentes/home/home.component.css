@@ -1,0 +1,10 @@
+.carrito{
+    padding: 8px;
+    position: absolute;
+    color: #88D1C7;
+    background-color: #375a7f;
+    margin: 15px;
+    border-radius: 50px;
+    opacity: 90%;
+    /* background-size:cover; */
+}

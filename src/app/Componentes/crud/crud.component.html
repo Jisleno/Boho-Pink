@@ -1,0 +1,100 @@
+<div style="text-align: center;">
+    <table class="table table-hover" style="min-height: 57.7vh;">
+        <thead>
+            <tr class="table-dark">
+                <th>Vista Previa</th>
+                <th>Marca</th>
+                <th>Caracteristicas</th>
+                <th>Color</th>
+                <th>Talla</th>
+                <th>Existencias</th>
+                <th>Precio</th>
+                <th>Operiaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table" *ngFor="let item of collection.data">
+                <td style="vertical-align: middle;"><img class="img-fluid" [src]="item.url"
+                        style="width: 80px;   margin-right: 1rem;"></td>
+                <td style="vertical-align: middle;">{{item.marca}}</td>
+                <td style="text-transform: capitalize; vertical-align: middle;">{{item.caracteristicas}}</td>
+                <td style="vertical-align: middle;">{{item.color}}</td>
+                <td style="vertical-align: middle;">{{item.talla}}</td>
+                <td style="vertical-align: middle;">{{item.existencias|number}}</td>
+                <td style="vertical-align: middle;">${{item.precio|number}}</td>
+                <td style="vertical-align: middle;">
+                    <button type="button" class="btn btn-block btn-danger" (click)="eliminar(item)">Eliminar</button>
+                    <button type="button" class="btn btn-block btn-warning" (click)="editar(content,item)">Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->
+
+    <!-- Todo esto es el html del Modal (ventana emergente) -->
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Crear/Actualizar Producto</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <form [formGroup]="ProductoForm">
+                        <div class="form-group">
+                            <strong><label for="">Marca</label></strong>
+                            <input type="text" formControlName="marca" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <strong><label for="">Caracteristicas</label></strong>
+                            <textarea formControlName="caracteristicas" class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <strong><label for="">Color</label></strong>
+                            <input type="text" formControlName="color" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <strong><label for="">Talla</label></strong>
+                            <input type="text" formControlName="talla" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <strong><label for="">Existencia</label></strong>
+                            <input type="number" formControlName="existencias" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <strong><label for="">Precio</label></strong>
+                            <input type="number" formControlName="precio" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" [value]="urlImage|async" formControlName="url">
+                            <label><strong>Selecciona una imagen</strong></label>
+                            <input type="file" accept=".jpeg,.png,.jpg" (change)="onUpload($event)">
+                        </div>
+
+                        <div class="progress form-group">
+                            <div class="progress-bar progressbar-striped bg-success" role="progressbar"
+                                [style.width]="(uploadPercent|async)+'%'"></div>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="updSave==false && urlImage|async as url" type="button" class="btn btn-success"
+                (click)="guardar(url)">Guardar</button>
+            <button *ngIf="updSave==true && urlImage|async as url" type="button" class="btn btn-info"
+                (click)="actualizar(url)">Actualizar</button>
+        </div>
+    </ng-template>
+
+    <button type="button" class="btn btn-dark" (click)="nuevo(content)">Añadir Nuevo Producto</button>
+
+</div>
