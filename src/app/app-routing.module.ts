@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent },
   { path: 'devolucion', component: DevolucionComponent },
   { path: 'detalles/:smart', component: DetallesComponent },
-  // { path: '**', pathMatch: 'full', redirectTo: 'inicio' },
+  { path: '**', pathMatch: 'full', redirectTo: 'inicio' },
 
 ];
 
