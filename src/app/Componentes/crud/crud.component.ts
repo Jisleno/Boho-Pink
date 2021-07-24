@@ -93,7 +93,7 @@ export class CrudComponent implements OnInit {
             precio: e.payload.doc.data().precio,
             existencias: e.payload.doc.data().existencias,
             url: e.payload.doc.data().url,
-            idFirebase: e.payload.doc.data().idFirebase
+            idFirebase: e.payload.doc.id
           }
         })
       },
@@ -108,6 +108,8 @@ export class CrudComponent implements OnInit {
   }
 
   eliminar(item: any): void {
+    console.log(item);
+    
     this.fibaseService.eliminarProducto(item.idFirebase)
 /*   this.collection.data.pop(item);
  */};
