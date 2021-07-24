@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Observable, pipe, Subscription } from 'rxjs';
@@ -25,12 +26,15 @@ export class CrudComponent implements OnInit {
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
   urlFInd: Subscription;
+  admin: any;
 
   constructor(
     public fb: FormBuilder,
     private modalService: NgbModal,
     private fibaseService: FirebaseService,
-    private readonly storage: AngularFireStorage) { }
+    private readonly storage: AngularFireStorage,
+    private router: Router,
+    ) { }
 
   onUpload(e) {
     /* console.log(e.target.files[0]); */
@@ -53,6 +57,13 @@ export class CrudComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fibaseService.$getObjecjtSorce.subscribe(resp => this.admin = resp).unsubscribe();
+    console.log('es admin? ', this.admin);
+
+    if (this.admin != true) {
+      this.router.navigate(['Inicio'])
+    }
+
     this.idFirebaseUpdate = "";
 
     this.config = {

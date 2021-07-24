@@ -19,13 +19,13 @@ const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'principal', component: PrincipalComponent },
   { path: 'politicas', component: PoliticasComponent },
-  { path: 'crud', component: CrudComponent },
+  { path: 'crud/:admin', component: CrudComponent },
   { path: 'admin', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'devolucion', component: DevolucionComponent },
   { path: 'detalles/:smart', component: DetallesComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'inicio' },
+  // { path: '**', pathMatch: 'full', redirectTo: 'inicio' },
 
 ];
 
