@@ -25,6 +25,7 @@ import { ContactoComponent } from './Componentes/contacto/contacto.component';
 import { PrincipalComponent } from './Componentes/principal/principal.component';
 import { CarritoComponent } from './Componentes/carrito/carrito.component';
 import { PedidosComponent } from './Componentes/pedidos/pedidos.component';
+import { FormasPagoComponent } from './Componentes/formas.pago/formas.pago.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PedidosComponent } from './Componentes/pedidos/pedidos.component';
     PrincipalComponent,
     CarritoComponent,
     PedidosComponent,
+    FormasPagoComponent,
   ],
   imports: [
     BrowserModule,
