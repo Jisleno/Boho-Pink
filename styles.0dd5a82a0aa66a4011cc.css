@@ -1,0 +1,1 @@
+.animated{animation-duration:1s;animation-fill-mode:both}.fast{animation-duration:.4s;animation-fill-mode:both}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}.fadeIn{animation-name:fadeIn}.letras{color:#fff}.fondo{background-color:grey}body{background-color:rgba(0,0,0,.1)}
